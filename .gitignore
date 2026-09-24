@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.agents
+.claude
+
+# --- Frontend (Node) ---
+node_modules/
+frontend/dist/
+.env.local
+.env.*.local
+*.tsbuildinfo
+.eslintcache
+.vite/
+
+
+# --- Editors / OS ---
+.DS_Store
+.idea/
+
+

@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: sponsor-tracker-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sponsor}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sponsor}
+      POSTGRES_DB: ${POSTGRES_DB:-sponsor_tracker}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - sponsor_tracker_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sponsor} -d ${POSTGRES_DB:-sponsor_tracker}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  sponsor_tracker_pgdata:
+    name: sponsor_tracker_pgdata
